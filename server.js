@@ -26,6 +26,16 @@ io.on('connection', (socket) => {
         console.log('Message Received: ' + msg);
         io.emit('message', msg);  // 广播消息到所有客户端
     });
+
+    // 设置定时器，每秒发送当前时间
+    const timerId = setInterval(() => {
+        socket.emit('time', new Date().toUTCString());
+    }, 1000);
+
+    socket.on('disconnect', () => {
+        console.log('Client disconnected');
+        clearInterval(timerId); // 清理定时器
+    });
 });
 
 // 服务器监听在 3000 端口

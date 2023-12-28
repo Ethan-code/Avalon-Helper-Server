@@ -1,0 +1,20 @@
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz" crossorigin="anonymous"></script>
+<script>
+    var socket = io('http://localhost:3000');
+    socket.on('connect', function() {
+        console.log('Connected to server');
+
+        // 监听消息
+        socket.on('message', function(msg) {
+            console.log('Received message: ' + msg);
+        });
+        socket.on('time', function(time) {
+            console.log('Received message: ' + time);
+        });
+
+        // 发送消息
+        socket.emit('message', 'Hello Server!');
+    });
+</script>
+
+hello
