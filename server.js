@@ -1,5 +1,6 @@
 const http = require('http');
 const socketIo = require('socket.io');
+require('dotenv').config(); // 确保这行代码在读取任何环境变量之前
 
 // 创建一个简单的 HTTP 服务器
 const server = http.createServer((req, res) => {
@@ -8,7 +9,7 @@ const server = http.createServer((req, res) => {
 
 const io = socketIo(server, {
     cors: {
-        origin: "http://localhost:3001", // 允许的源（这里应该是你的客户端地址）
+        origin: process.env.ALLOW_ORIGIN_URL, // 允许的源（这里应该是你的客户端地址）
         methods: ["GET", "POST"] // 允许的 HTTP 方法
     }
 });
