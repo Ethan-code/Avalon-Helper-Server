@@ -4,7 +4,7 @@
   crossorigin="anonymous"
 ></script>
 <script>
-  var socket = io("http://localhost:3000");
+  var socket = io("https://avalon-helper-server.onrender.com");
   socket.off();
   socket.on("connect", function () {
     console.log("Connected to server");
